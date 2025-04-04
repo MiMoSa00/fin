@@ -19,12 +19,12 @@ const Dashboard: React.FC = () => {
           <div className="bg-white shadow rounded-lg p-6 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <h1 className="text-2xl font-bold text-gray-900">Account Balance:</h1>
-                <h2 className="text-xl font-semibold text-teal-700">
+                <h1 className="text-lg sm:text-2xl whitespace-nowrap font-bold text-gray-900">Account Balance:</h1>
+                <h2 className="text-base sm:text-xl font-semibold text-teal-700">
                   {showBalance ? '$15,678.90' : '****'}
                 </h2>
               </div>
-              <button onClick={toggleBalanceVisibility} className="text-gray-600 hover:text-gray-800">
+              <button onClick={toggleBalanceVisibility} className="text-gray-600 hover:text-gray-800 ml-auto">
                 {showBalance ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
