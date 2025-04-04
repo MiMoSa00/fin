@@ -4,7 +4,11 @@ import { FaUserCircle, FaHome, FaChartLine, FaPiggyBank, FaSignInAlt, FaUserPlus
 import Login from './Login';
 import Signup from './Signup';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  className?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,7 +28,7 @@ const Navbar: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleLogin = (email: string, password: string) => {
+  const handleLogin = (email: string) => {
     setUserName(email.split('@')[0]);
     setIsLoggedIn(true);
     setIsModalOpen(false);
@@ -32,6 +36,7 @@ const Navbar: React.FC = () => {
 
   const handleSignup = (email: string, password: string, confirmPassword: string, dob: string, phone: string) => {
     if (password === confirmPassword) {
+      console.log(`User signed up with DOB: ${dob} and Phone: ${phone}`);
       setUserName(email.split('@')[0]);
       setIsLoggedIn(true);
       setIsModalOpen(false);
@@ -65,7 +70,7 @@ const Navbar: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <nav className="bg-teal-700 sticky top-0 z-50">
+    <nav className={`bg-teal-700 sticky top-0 z-50 ${className}`}>
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -78,7 +83,7 @@ const Navbar: React.FC = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="ml-2 px-2 py-1 font-bold outline-white rounded-md text-sm text-gray-900 w-24 sm:w-32 md:w-48 lg:w-64"
+              className="ml-2 px-2 py-1 font-bold outline-none rounded-md text-sm text-gray-900 w-24 sm:w-32 md:w-48 lg:w-64"
             />
           </div>
           <div className="hidden sm:flex items-center space-x-2 sm:space-x-4">
@@ -111,7 +116,7 @@ const Navbar: React.FC = () => {
         leaveFrom="-translate-x-0"
         leaveTo="-translate-x-full"
       >
-        <div className="navbar-menu sm:hidden fixed top-0 left-0 h-full w-3/4 bg-gray-800 bg-opacity-75 z-40">
+        <div className="navbar-menu sm:hidden fixed top-0 left-0 h-full w-full bg-gray-800 bg-opacity-75 z-40 overflow-y-auto">
           <div className="flex justify-end p-2">
             <button onClick={closeMenu} className="text-white font-bold hover:bg-gray-700 hover:text-white px-2 py-1 rounded-full text-sm">
               X
